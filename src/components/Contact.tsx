@@ -45,31 +45,38 @@ const Contact = () => {
   return (
     <section id="contact" className="section-padding bg-primary text-primary-foreground" dir={dir}>
       <div className="container-custom">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-20">
           {/* Content */}
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-foreground/10 text-primary-foreground text-sm font-medium mb-4">
-              {dir === 'rtl' ? 'تواصل معنا' : 'Contact Us'}
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-foreground/10 text-primary-foreground text-xs sm:text-sm font-medium mb-4">
+              {dir === 'rtl' ? 'اتصل بنا' : 'Contact Us'}
             </div>
             
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold mb-4 sm:mb-6">
               {t('contact.title')}
             </h2>
             
-            <p className="text-lg text-primary-foreground/80 mb-10">
+            <p className="text-base sm:text-lg text-primary-foreground/80 mb-8 sm:mb-12">
               {t('contact.subtitle')}
             </p>
 
             {/* Contact Info */}
-            <div className="space-y-6">
+            <div className="space-y-4 sm:space-y-6">
               {contactInfo.map((info, index) => (
-                <div key={index} className="flex items-center gap-4">
-                  <div className="w-14 h-14 rounded-2xl bg-primary-foreground/10 flex items-center justify-center">
-                    <info.icon className="w-6 h-6" />
+                <div
+                  key={index}
+                  className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 rounded-xl bg-primary-foreground/10 backdrop-blur-sm transition-all duration-300 hover:bg-primary-foreground/20"
+                >
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-primary-foreground/20 flex items-center justify-center">
+                    <info.icon className="w-5 h-5 sm:w-6 sm:h-6" />
                   </div>
                   <div>
-                    <div className="text-sm text-primary-foreground/60">{info.label}</div>
-                    <div className="font-semibold text-lg">{info.value}</div>
+                    <div className="text-xs sm:text-sm font-medium text-primary-foreground/60 mb-1">
+                      {info.label}
+                    </div>
+                    <div className="text-sm sm:text-base font-semibold">
+                      {info.value}
+                    </div>
                   </div>
                 </div>
               ))}
@@ -77,67 +84,59 @@ const Contact = () => {
           </div>
 
           {/* Form */}
-          <div className="bg-card text-card-foreground rounded-2xl p-8 lg:p-10 card-shadow">
-            <form onSubmit={handleSubmit} className="space-y-6">
+          <div>
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
               <div>
                 <label className="block text-sm font-medium mb-2">
-                  {t('contact.name')}
+                  {dir === 'rtl' ? 'الاسم الكامل' : 'Full Name'}
                 </label>
                 <Input
+                  type="text"
                   required
-                  placeholder={dir === 'rtl' ? 'أدخل اسمك الكامل' : 'Enter your full name'}
-                  className="bg-secondary border-0"
+                  className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50 rounded-lg focus:ring-2 focus:ring-primary-foreground/30"
+                  placeholder={dir === 'rtl' ? 'أدخل اسمك' : 'Enter your name'}
                 />
               </div>
-
+              
               <div>
                 <label className="block text-sm font-medium mb-2">
-                  {t('contact.email')}
-                </label>
-                <Input
-                  type="email"
-                  required
-                  placeholder={dir === 'rtl' ? 'أدخل بريدك الإلكتروني' : 'Enter your email'}
-                  className="bg-secondary border-0"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium mb-2">
-                  {t('contact.phone')}
+                  {dir === 'rtl' ? 'رقم الهاتف' : 'Phone Number'}
                 </label>
                 <Input
                   type="tel"
+                  required
+                  className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50 rounded-lg focus:ring-2 focus:ring-primary-foreground/30"
                   placeholder={dir === 'rtl' ? 'أدخل رقم هاتفك' : 'Enter your phone number'}
-                  className="bg-secondary border-0"
                 />
               </div>
-
+              
               <div>
                 <label className="block text-sm font-medium mb-2">
-                  {t('contact.message')}
+                  {dir === 'rtl' ? 'الرسالة' : 'Message'}
                 </label>
                 <Textarea
                   required
                   rows={4}
+                  className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50 rounded-lg focus:ring-2 focus:ring-primary-foreground/30 resize-none"
                   placeholder={dir === 'rtl' ? 'اكتب رسالتك هنا...' : 'Write your message here...'}
-                  className="bg-secondary border-0 resize-none"
                 />
               </div>
-
+              
               <Button
                 type="submit"
-                size="lg"
-                className="w-full"
                 disabled={isSubmitting}
+                className="w-full sm:w-auto px-6 sm:px-8 py-2 sm:py-3 bg-primary-foreground text-primary hover:bg-primary-foreground/90 font-medium rounded-lg transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isSubmitting ? (
-                  <div className="w-5 h-5 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin" />
+                  <span className="flex items-center gap-2">
+                    <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
+                    {dir === 'rtl' ? 'جاري الإرسال...' : 'Sending...'}
+                  </span>
                 ) : (
-                  <>
-                    <Send className="w-5 h-5 me-2" />
-                    {t('contact.submit')}
-                  </>
+                  <span className="flex items-center gap-2">
+                    <Send className="w-4 h-4" />
+                    {dir === 'rtl' ? 'إرسال الرسالة' : 'Send Message'}
+                  </span>
                 )}
               </Button>
             </form>

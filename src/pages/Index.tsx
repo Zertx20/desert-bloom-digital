@@ -19,17 +19,27 @@ const Index = () => {
         
         {/* Main content with background image */}
         <div 
-          className="relative"
+          className="relative bg-cover bg-center bg-no-repeat"
           style={{
             backgroundImage: 'url(/background-image.png)',
-            backgroundAttachment: 'fixed',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: 'cover'
           }}
         >
+          {/* Mobile-optimized background */}
+          <div className="lg:hidden absolute inset-0 bg-cover bg-center bg-no-repeat" 
+               style={{
+                 backgroundImage: 'url(/background-image.png)',
+                 backgroundAttachment: 'scroll',
+               }} />
+          
+          {/* Desktop fixed background */}
+          <div className="hidden lg:block absolute inset-0 bg-cover bg-center bg-no-repeat" 
+               style={{
+                 backgroundImage: 'url(/background-image.png)',
+                 backgroundAttachment: 'fixed',
+               }} />
+          
           {/* Overlay for better text readability */}
-          <div className="absolute inset-0 bg-background/30" />
+          <div className="absolute inset-0 bg-background/40" />
           
           {/* Content */}
           <div className="relative z-10">
